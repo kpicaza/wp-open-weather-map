@@ -24,6 +24,7 @@
 
         // Cleanup
         $api_key = isset($options['api_key']) ? $options['api_key'] : '';
+        $city = isset($options['city']) ? $options['city'] : '';
         ?>
 
         <?php
@@ -33,9 +34,17 @@
 
         <fieldset>
             <label for="<?php echo $this->plugin_name; ?>-api_key">
+                <span><?php esc_attr_e('Display weather form', $this->plugin_name); ?></span>
+            </label>
+            <input type="text" class="<?php echo $this->plugin_name; ?>-city" id="<?php echo $this->plugin_name; ?>-api_key" name="<?php echo $this->plugin_name; ?>[city]" placeholder="Erandio.Es" value="<?php echo $city; ?>"  />
+            </label>
+        </fieldset>
+
+        <fieldset>
+            <label for="<?php echo $this->plugin_name; ?>-api_key">
                 <span><?php esc_attr_e('Open Weather Map API Keys', $this->plugin_name); ?></span>
             </label>
-            <input type="text" class="<?php echo $this->plugin_name; ?>-api_key" id="<?php echo $this->plugin_name; ?>-api_key" name="<?php echo $this->plugin_name; ?>[api_key]"  value="<?php echo $api_key; ?>"  />
+            <input type="text" class="<?php echo $this->plugin_name; ?>-api_key" id="<?php echo $this->plugin_name; ?>-api_key" name="<?php echo $this->plugin_name; ?>[api_key]" placeholder="API secret" value="<?php echo $api_key; ?>"  />
             </label>
         </fieldset>
 

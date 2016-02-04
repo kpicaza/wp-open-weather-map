@@ -158,6 +158,19 @@ class Wp_Open_Weather_Admin
                         );
                 }
 
+                // Do validation field by field
+                $valid['city'] = sanitize_text_field($input['city']);
+
+                // validate api_key field errors
+                if (!empty($input['city']) && empty($valid['city'])) {
+                        add_settings_error(
+                                'open_weather_city', // Setting title
+                                'open_weather_city_texterror', // Error ID
+                                'Please enter a valid City', // Error message
+                                'error'                         // Type of message
+                        );
+                }
+                
                 return $valid;
         }
 

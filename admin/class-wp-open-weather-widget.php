@@ -22,8 +22,8 @@ class Open_Weather_Widget extends WP_Widget
         {
                 parent::__construct(
                         'open_weather_widget', // Base ID
-                        __('Weather in Erandio, Bizkaia', 'text_domain'), // Name
-                        array('description' => __('Witget than showns actual weather from Erandio, Bizkaia', 'text_domain'),) // Args
+                        __('Open Weather', 'text_domain'), // Name
+                        array('description' => __('Witget than showns actual weather from selected city', 'text_domain'),) // Args
                 );
 
                 $this->plugin_name = 'wp-open-weather';
@@ -42,7 +42,7 @@ class Open_Weather_Widget extends WP_Widget
 
                 $options = get_option($this->plugin_name);
 
-                $data = $this->makeCall($options['api_key']);
+                $data = $this->makeCall($options['api_key'], $options['city']);
 
                 echo $args['before_widget'];
                 if (!empty($instance['title'])) {
@@ -64,7 +64,7 @@ class Open_Weather_Widget extends WP_Widget
          */
         public function form($instance)
         {
-                $title = !empty($instance['title']) ? $instance['title'] : __('Weather in Erandio, Bizkaia', 'text_domain');
+                $title = !empty($instance['title']) ? $instance['title'] : __('Weather', 'text_domain');
                 ?>
                 <p>
                     <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label> 
@@ -91,12 +91,12 @@ class Open_Weather_Widget extends WP_Widget
                 return $instance;
         }
 
-        protected function makeCall($apikey)
+        protected function makeCall($apikey, $city = 'Erandio.Es')
         {
 
                 $locale = $this->getLocale(get_locale());
 
-                $response = wp_remote_get(sprintf('http://api.openweathermap.org/data/2.5/weather?q=city=Erandio.Sp&APPID=%1$s&lang=%2$s', $apikey, $locale));
+                $response = wp_remote_get(sprintf('http://api.openweathermap.org/data/2.5/weather?q=city=%3$s&APPID=%1$s&lang=%2$s', $apikey, $locale, $city));
                 $data = json_decode(wp_remote_retrieve_body($response));
 
                 if (!isset($data->weather) || null === $data->weather[0]) {
