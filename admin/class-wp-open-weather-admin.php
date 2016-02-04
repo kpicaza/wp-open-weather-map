@@ -166,4 +166,10 @@ class Wp_Open_Weather_Admin
                 register_setting($this->plugin_name, $this->plugin_name, array($this, 'validate'));
         }
 
+        public function register_open_weather_widget()
+        {
+                require __DIR__ . '/class-wp-open-weather-widget.php';
+                register_widget('Open_Weather_Widget');
+        }
+
 }
