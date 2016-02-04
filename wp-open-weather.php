@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       WP Open Weather 
  * Plugin URI:        https://github.com/kpicaza/wp-open-weather
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Simple way to display current weather as a widget..
  * Version:           1.0.0
  * Author:            Kpicaza
  * Author URI:        https://github.com/kpicaza
