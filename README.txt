@@ -23,6 +23,7 @@ Integrate Open Weather Map API with your wordpress.
 1. Create account in [Open Weather Map](http://openweathermap.org/).
 1. Copy your API key and paste on plugin configuration at `settings > Open Weather Map`.
 1. Type city you desire to show weather from.
+1. Activate widget in your widgets area
 1. Open your page public area and watch current weather at Erandio, Bizkaia.
 
 == Usage ==
