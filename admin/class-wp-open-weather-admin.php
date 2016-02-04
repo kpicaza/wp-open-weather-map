@@ -140,4 +140,30 @@ class Wp_Open_Weather_Admin
                 include_once( 'partials/wp-open-weather-admin-display.php' );
         }
 
+        public function validate($input)
+        {
+                // All inputs        
+                $valid = array();
+
+                // Do validation field by field
+                $valid['api_key'] = preg_match("/^\w+$/", $input['api_key']) ? sanitize_text_field($input['api_key']) : false;
+
+                // validate api_key field errors
+                if (!empty($input['api_key']) && empty($valid['api_key'])) {
+                        add_settings_error(
+                                'open_weather_api_key', // Setting title
+                                'open_weather_api_key_texterror', // Error ID
+                                'Please enter a valid Open Weather Map API key', // Error message
+                                'error'                         // Type of message
+                        );
+                }
+
+                return $valid;
+        }
+
+        public function options_update()
+        {
+                register_setting($this->plugin_name, $this->plugin_name, array($this, 'validate'));
+        }
+
 }
